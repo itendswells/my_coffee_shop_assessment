@@ -6,10 +6,10 @@ function MainComponent() {
   return (
     <div className='container'>
         <div className='row'>
-            <div className='col-sm-7'>
+            <div className='col-sm-6'>
                 <DrinkInterface/>
             </div>
-            <div className='col-sm-5'>
+            <div className='col-sm-6'>
                 <OrderInterface/>
             </div>
         </div>

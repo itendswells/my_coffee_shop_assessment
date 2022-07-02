@@ -3,3 +3,26 @@
 .bordered {
     border-style: solid;
 }
+
+.card {
+    width: 120px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+}
+
+.card.category {
+    background-color: lightblue;
+}
+
+.card.drink {
+    height: 60px;
+    line-height: 60px;
+    background-color: lightgreen;
+}
+
+.span p {
+    line-height: 18px;
+    display: inline-block;
+    vertical-align: middle;
+}
