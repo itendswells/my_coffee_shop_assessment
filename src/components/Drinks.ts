@@ -173,3 +173,9 @@ export interface DrinkDict {
     category: string;
     price: number;
 }
+
+export interface OrderDict {
+  name: string;
+  qty: number;
+  price: number;
+}

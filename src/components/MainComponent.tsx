@@ -1,25 +1,43 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import DrinkInterface from './DrinkInterface'
 import OrderInterface from './OrderInterface'
-import {DrinkDict} from './Drinks'
+import {DrinkDict, OrderDict} from './Drinks'
 
 function MainComponent() {
-  const [currentOrder, setCurrentOrder] = useState(new Array<DrinkDict>);
+  const [currentOrder, setCurrentOrder] = useState(new Array<OrderDict>);
 
   const addToOrder = (drink: DrinkDict) => {
-    let updatedOrder = [...currentOrder, ...[drink]];
+    let order = {
+      name: drink.name,
+      qty: 1,
+      price: drink.price
+    }
+    let updatedOrder = [...currentOrder, ...[order]];
     setCurrentOrder(updatedOrder);
   }
 
-  const updateQty = (id: string, change: string) => {
-    let p = document.getElementById(id);
-    let curr = parseInt(p?.textContent!);
+  const updateQty = (drink: OrderDict, change: string) => {
+    let newQty = drink.qty;
     if (change === '-') {
-      curr = curr - 1;
+      newQty = newQty - 1;
     } else if (change === '+') {
-      curr = curr + 1;
+      newQty = newQty + 1;
     }
-    p!.textContent = curr.toString();
+    
+    if (newQty < 1) newQty = 1;
+    
+    let newDrink = {
+      name: drink.name,
+      qty: newQty,
+      price: drink.price
+    };
+    let newOrder = [...currentOrder];
+    let index = newOrder.indexOf(drink);
+    if (index != -1) {
+      newOrder[index] = newDrink;
+    }
+
+    setCurrentOrder(newOrder);   
   }
 
   return (
