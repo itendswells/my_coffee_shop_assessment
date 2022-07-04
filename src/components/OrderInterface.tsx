@@ -5,10 +5,11 @@ import OrderTile from './OrderTile';
 interface OrderInterfaceProps {
   currentOrder: Array<OrderDict>;
   qtyUpdate: (drink: OrderDict, change: string) => void;
+  removeDrink: (drink: OrderDict) => void;
 }
 
 function OrderInterface(props: OrderInterfaceProps) {
-  const {currentOrder, qtyUpdate} = props;
+  const {currentOrder, qtyUpdate, removeDrink} = props;
 
   const taxRate = 0.05;
 
@@ -32,7 +33,7 @@ function OrderInterface(props: OrderInterfaceProps) {
     <div className='bordered'>
       <h2>Order:</h2>
       {currentOrder.map((drink: OrderDict) => (
-          <OrderTile drink={drink} key={drink.name} qtyUpdate={qtyUpdate}/>
+          <OrderTile drink={drink} key={drink.name} qtyUpdate={qtyUpdate} removeDrink={removeDrink}/>
       ))}
       <div className='row'>
         <div className='col-sm-9'>

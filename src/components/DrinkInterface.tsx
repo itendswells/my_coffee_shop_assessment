@@ -21,10 +21,8 @@ function DrinkInterface(props: DrinkInterfaceProps) {
     <div className='bordered'>
       <div className='row'>
         <h2>Drinks</h2>
-        <button name='addDrink'>Add Drink</button>
-        <button name='addCategory'>Add Category</button>
-        <button name='removeCategory'>Remove Category</button>
       </div>
+      <hr></hr>
       <div className='row'>
         {categories.map((category : string) => 
           <div className='cols-sm' key={category}>
@@ -45,6 +43,12 @@ function DrinkInterface(props: DrinkInterfaceProps) {
             <React.Fragment key={drink.name}></React.Fragment>
           )
         ))}
+      </div>
+      <hr></hr>
+      <div className='row'>
+        <button name='addDrink'>Add Drink</button>
+        <button name='addCategory'>Add Category</button>
+        <button name='removeCategory'>Remove Category</button>
       </div>
     </div>
   )

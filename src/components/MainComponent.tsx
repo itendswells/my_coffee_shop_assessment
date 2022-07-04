@@ -16,6 +16,16 @@ function MainComponent() {
     setCurrentOrder(updatedOrder);
   }
 
+  const removeFromOrder = (drink: OrderDict) => {
+    let newOrder = [...currentOrder];
+    let index = newOrder.indexOf(drink);
+    if (index != -1) {
+      newOrder.splice(index, 1);
+    }
+
+    setCurrentOrder(newOrder);   
+  }
+
   const updateQty = (drink: OrderDict, change: string) => {
     let newQty = drink.qty;
     if (change === '-') {
@@ -47,7 +57,7 @@ function MainComponent() {
                 <DrinkInterface addToOrder={addToOrder}/>
             </div>
             <div className='col-sm-6'>
-                <OrderInterface currentOrder={currentOrder} qtyUpdate={updateQty}/>
+                <OrderInterface currentOrder={currentOrder} qtyUpdate={updateQty} removeDrink={removeFromOrder}/>
             </div>
         </div>
     </div>

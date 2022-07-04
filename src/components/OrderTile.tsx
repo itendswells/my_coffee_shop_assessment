@@ -5,10 +5,11 @@ import {OrderDict} from './Drinks'
 interface OrderTileProps {
     drink: OrderDict;
     qtyUpdate: (drink: OrderDict, change: string) => void;
+    removeDrink: (drink: OrderDict) => void
 }
 
 function OrderTile(props: OrderTileProps) {
-  const {drink, qtyUpdate} = props;
+  const {drink, qtyUpdate, removeDrink} = props;
 
   return (
     <div className='row bordered'>
@@ -22,7 +23,14 @@ function OrderTile(props: OrderTileProps) {
           <button className='qty-btn' id='qty+' onClick={() => qtyUpdate(drink, '+')}>+</button>
         </div>
       </div>
-      <p className='qty-text'>{(drink.qty*drink.price).toFixed(2)}</p>
+      <div className='col-sm-1'>
+        <p className='qty-text'>{(drink.qty*drink.price).toFixed(2)}</p>
+      </div>
+      <div className='col-sm-1'>
+        <button onClick={() => removeDrink(drink)}>
+          <i className='material-icons'>delete</i>
+        </button>
+      </div>
     </div>
   )
 }
