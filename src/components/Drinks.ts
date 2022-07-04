@@ -1,4 +1,6 @@
-const drinkDicts = [
+export const drinkCats = ['Coffee', 'Tea', 'Seasonals', 'Smoothies', 'Other']
+
+export const drinkDicts = [
   {
     name: 'Brewed Coffee',
     category: 'Coffee',
@@ -166,4 +168,8 @@ const drinkDicts = [
   }
 ]
 
-export default drinkDicts
+export interface DrinkDict {
+    name: string;
+    category: string;
+    price: number;
+}

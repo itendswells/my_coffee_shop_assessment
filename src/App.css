@@ -4,6 +4,18 @@
     border-style: solid;
 }
 
+.qty-text {
+    font-size: 15px;
+    height: 40px;
+    line-height: 40px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.qty-text.centered {
+    text-align: center;
+}
+
 .card {
     width: 120px;
     height: 30px;
@@ -26,3 +38,22 @@
     display: inline-block;
     vertical-align: middle;
 }
+
+.form-group textarea {
+    width: 100%
+    /* max-width: 400px;  */
+}
+
+.centered {
+    text-align: center;
+}
+
+/* input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+} */
+
+/* input[type=number] {
+    -moz-appearance:textfield; 
+} */
