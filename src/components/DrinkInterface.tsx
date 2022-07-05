@@ -1,5 +1,6 @@
 import { Dictionary } from 'express-serve-static-core';
 import React, {useState} from 'react'
+import DrinkForm from './DrinkForm';
 import {drinkCats} from './Drinks';
 import {drinkDicts} from './Drinks';
 import {DrinkDict} from './Drinks';
@@ -31,12 +32,28 @@ function DrinkInterface(props: DrinkInterfaceProps) {
   const addCategory = (category: string) => {
     if (!categories.includes(category)) {
       let updatedCategories = [...categories];
-      updatedCategories = [...categories, ...[category]];
+      updatedCategories = [...updatedCategories, ...[category]];
       setCategories(updatedCategories);
     }
     setSelectedCategory(categories[0]);
     changeMode('order');
   };
+  const saveDrink = (drink: DrinkDict) => {
+    console.log(drink);
+    let updatedDrinks = [...drinks];
+    if (updatedDrinks.some(d => drink.name === d.name)) {
+      console.log('edit');
+      updatedDrinks = updatedDrinks.map((d: DrinkDict) => {
+        return d.name === drink.name ? drink : d;
+      });
+    }else {
+      console.log('new');
+      updatedDrinks = [...updatedDrinks, ...[drink]];
+    }
+    setDrinks(updatedDrinks);
+    console.log(drinks);
+    changeMode('order');
+  }
 
   let modeContent = <></>;
 
@@ -96,6 +113,15 @@ function DrinkInterface(props: DrinkInterfaceProps) {
         <button onClick={() => addCategory((document.getElementById('addCategoryInput')! as HTMLInputElement).value)}>Add</button>
         <button onClick={() => changeMode('order')}>Back</button>
       </div>
+    </>
+  } else if (mode === 'addDrink') {
+    modeContent = <>
+      <DrinkForm 
+        initialDrink={{name:'', category:categories[0], price:0}} 
+        categories={categories}
+        onCancel={() => changeMode('order')}
+        onSubmit={saveDrink}
+      />
     </>
   }
 
