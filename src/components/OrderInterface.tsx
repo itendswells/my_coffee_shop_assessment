@@ -32,9 +32,13 @@ function OrderInterface(props: OrderInterfaceProps) {
   return (
     <div className='bordered'>
       <h2>Order:</h2>
-      {currentOrder.map((drink: OrderDict) => (
-          <OrderTile drink={drink} key={drink.name} qtyUpdate={qtyUpdate} removeDrink={removeDrink}/>
-      ))}
+      <hr></hr>
+      <div className='scroll'>
+        {currentOrder.map((drink: OrderDict) => (
+            <OrderTile drink={drink} key={drink.name} qtyUpdate={qtyUpdate} removeDrink={removeDrink}/>
+        ))}
+      </div>
+      <hr></hr>
       <div className='row'>
         <div className='col-sm-9'>
           <h4>Subtotal:</h4>

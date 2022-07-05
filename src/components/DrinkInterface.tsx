@@ -4,6 +4,7 @@ import DrinkForm from './DrinkForm';
 import {drinkCats} from './Drinks';
 import {drinkDicts} from './Drinks';
 import {DrinkDict} from './Drinks';
+import DrinkTile from './DrinkTile';
 
 interface DrinkInterfaceProps {
   addToOrder: (drink: DrinkDict) => void
@@ -39,20 +40,24 @@ function DrinkInterface(props: DrinkInterfaceProps) {
     changeMode('order');
   };
   const saveDrink = (drink: DrinkDict) => {
-    console.log(drink);
     let updatedDrinks = [...drinks];
     if (updatedDrinks.some(d => drink.name === d.name)) {
-      console.log('edit');
       updatedDrinks = updatedDrinks.map((d: DrinkDict) => {
         return d.name === drink.name ? drink : d;
       });
     }else {
-      console.log('new');
       updatedDrinks = [...updatedDrinks, ...[drink]];
     }
     setDrinks(updatedDrinks);
-    console.log(drinks);
     changeMode('order');
+  }
+  const removeDrink = (drink: DrinkDict) => {
+    let updatedDrinks = [...drinks];
+    let index = updatedDrinks.indexOf(drink);
+    if (index != -1) {
+      updatedDrinks.splice(index, 1);
+    }
+    setDrinks(updatedDrinks);
   }
 
   let modeContent = <></>;
@@ -123,17 +128,28 @@ function DrinkInterface(props: DrinkInterfaceProps) {
         onSubmit={saveDrink}
       />
     </>
+  } else if (mode === 'editDrinks') {
+    modeContent = <>
+      {drinks.map((drink) => 
+        <DrinkTile drink={drink} onRemove={removeDrink} />
+      )}
+    </>
   }
 
   return (
     <div className='bordered'>
-      <div className='row'>
+      <div className='display: inline'>
         <h2>Drinks</h2>
       </div>
       <hr></hr>
-      {modeContent}
+      <div className='scroll'>
+        {modeContent}
+      </div>
       <hr></hr>
       <div className='row'>
+        <button className='right-align' onClick={() => changeMode('order')}>
+          <i className='material-icons'>home</i>
+        </button>
         <button name='addDrink' onClick={() => changeMode('addDrink')}>Add Drink</button>
         <button name='editDrinks' onClick={() => changeMode('editDrinks')}>Edit Drinks</button>
         <button name='addCategory' onClick={() => changeMode('addCategory')}>Add Category</button>

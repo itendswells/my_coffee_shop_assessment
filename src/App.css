@@ -41,6 +41,23 @@
     background-color: lightslategray;
 }
 
+.scroll {
+    height: 400px;
+    overflow-y: auto;
+}
+
+.right-align {
+    float: right;
+}
+
+.auto-height {
+    height: fit-content;
+}
+
+.full-col {
+    width: max-content;
+}
+
 .span p {
     line-height: 18px;
     display: inline-block;
