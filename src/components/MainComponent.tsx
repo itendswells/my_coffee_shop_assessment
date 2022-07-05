@@ -5,15 +5,19 @@ import {DrinkDict, OrderDict} from './Drinks'
 
 function MainComponent() {
   const [currentOrder, setCurrentOrder] = useState(new Array<OrderDict>);
+  const [currentOrderDrinks, setCurrentOrderDrinks] = useState(new Array<string>);
 
   const addToOrder = (drink: DrinkDict) => {
-    let order = {
-      name: drink.name,
-      qty: 1,
-      price: drink.price
+    if (!currentOrderDrinks.includes(drink.name)) {
+      setCurrentOrderDrinks([...currentOrderDrinks, ...[drink.name]]);
+      let order = {
+        name: drink.name,
+        qty: 1,
+        price: drink.price
+      }
+      let updatedOrder = [...currentOrder, ...[order]];
+      setCurrentOrder(updatedOrder);
     }
-    let updatedOrder = [...currentOrder, ...[order]];
-    setCurrentOrder(updatedOrder);
   }
 
   const removeFromOrder = (drink: OrderDict) => {

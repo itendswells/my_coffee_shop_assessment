@@ -31,10 +31,14 @@
     background-color: lightblue;
 }
 
+.card.selected-category {
+    background-color: lightgreen;
+}
+
 .card.drink {
     height: 60px;
     line-height: 60px;
-    background-color: lightgreen;
+    background-color: lightslategray;
 }
 
 .span p {
